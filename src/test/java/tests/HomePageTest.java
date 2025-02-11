@@ -25,6 +25,10 @@ public class HomePageTest  extends BaseTest {
                 .pause(700)
                 .perform();
         pageManager.homePage.location_selector.click();
+        pageManager.homePage.home_cleaning.click();
+        for (int i = 0; i < 7; i++) {
+            pageManager.homePage.getDurationSelector(i).click();
+        }
 
 
     }
