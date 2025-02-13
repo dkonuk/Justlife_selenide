@@ -12,6 +12,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
 import org.testng.asserts.SoftAssert;
 
+import static com.codeborne.selenide.Selenide.$;
 import static driver.DriverFactory.maximize;
 
 public class BaseTest {
@@ -41,13 +42,15 @@ public class BaseTest {
 
     public void acceptCookies() {
         try {
-            if (pageManager.homePage.accept_cookies_button.isDisplayed()) {
-                pageManager.homePage.accept_cookies_button.click();
-            }
-
+            pageManager.homePage.accept_cookies_button.click();
         } catch (NoSuchElementException e) {
             System.out.println("Accept Cookies button is not present. Continuing test...");
         }
 
+    }
+    public int iterateOverAllChildren(String cssSelector, String childSelector) {
+        SelenideElement parentElements = $(cssSelector);
+        ElementsCollection childElements = parentElements.$$(childSelector);
+        return childElements.size();
     }
 }
